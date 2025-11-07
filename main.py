@@ -1,11 +1,19 @@
 import os
 import time
-from src.config import RTSP_URL, MODEL_PATH, OUTPUT_PATH, GRACE_PERIOD, CONF_TH
+from src.config import HOST_URL, RTSP_URL, MODEL_PATH, OUTPUT_PATH, GRACE_PERIOD, CONF_TH
 from src.camera import CameraStream
 from src.detector import PersonDetector
 from src.recorder import StreamRecorder
+from src.ping import successful_ping
 
 def main():
+
+    # Prueba de conexión al host
+    if successful_ping(HOST_URL):
+        print('Ping a cámara exitoso')
+    else:
+        print('No se pudo hacer ping a cámara')
+        return
 
     # Objetos
     camera = CameraStream(RTSP_URL)
