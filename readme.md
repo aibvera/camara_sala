@@ -17,6 +17,10 @@ Básicamente eso. El video lo traté de guardar con audio pero creo que el strea
     1. Cambia la ruta de VIDEO_PATH (del `.bat`) a la que quieras.
     2. Ejecutar: `./restart_camara.bat`
 
+## Copiar carpeta de videos a otra pc
+
+- Editar y ejecutar: `scp -r usuario@192.168.1.XXX:/home/ale/videos_camara C:\Users\aleja\Desktop\`
+
 ## Comando para limpiar completamente Docker
 
 - `docker system prune -a --volumes`
