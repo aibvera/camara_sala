@@ -7,6 +7,7 @@ ENV PYTHONUNBUFFERED=1
 # Instala ffmpeg y dependencias mínimas del sistema
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ffmpeg \
+    iputils-ping \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Crea directorio de trabajo dentro del contenedor

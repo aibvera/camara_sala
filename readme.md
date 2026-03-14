@@ -2,8 +2,25 @@
 
 Básicamente eso. El video lo traté de guardar con audio pero creo que el stream no devuelve audio.
 
-### Antes de correr
+## Antes de correr
 - Instalar las librerías de requirements.txt
 - El .env debe estar en el directorio raiz.
 
-**ABV 2025**
+## Levantar la aplicación
+
+- En Linux:
+    1. Cambia la ruta de VIDEO_PATH (del `.sh`) a la que quieras.
+    2. Dar permisos de ejecución: `chmod +x restart_camara.sh`
+    3. Ejecutar: `./restart_camara.sh`
+
+- En Windows:
+    1. Cambia la ruta de VIDEO_PATH (del `.bat`) a la que quieras.
+    2. Ejecutar: `./restart_camara.bat`
+
+## Comando para limpiar completamente Docker
+
+- `docker system prune -a --volumes`
+
+---
+
+**ABV 2025-2026**
