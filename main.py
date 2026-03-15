@@ -1,3 +1,4 @@
+import psutil
 import os
 import time
 from datetime import datetime, timedelta, timezone   # ← agregado
@@ -86,4 +87,13 @@ def main():
 
 
 if __name__ == '__main__':
+    
+    # Forzar uso del núcleo 0 en Windows y Linux
+    try:
+        p = psutil.Process(os.getpid())
+        p.cpu_affinity([0])
+    except Exception as e:
+        print(f"[WARN] No se pudo fijar afinidad de CPU: {e}")
+
+    # Programa
     main()
