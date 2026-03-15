@@ -2,9 +2,8 @@
 
 Básicamente eso. El video lo traté de guardar con audio pero creo que el stream no devuelve audio.
 
-## Antes de correr
-- Instalar las librerías de requirements.txt
-- El .env debe estar en el directorio raiz.
+## Antes de levantar
+- El .env debe estar creado y lleno en el directorio raiz.
 
 ## Levantar la aplicación
 
