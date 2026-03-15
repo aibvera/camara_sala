@@ -5,7 +5,15 @@ class CameraStream:
         self.cap = cv2.VideoCapture(rtsp_url)
 
     def is_connected(self):
-        return self.cap.isOpened()
+        try:
+            if self.cap.isOpened():
+                return True
+            else:
+                print(f"[ERROR] No se pudo establecer conexión con la cámara")
+                return False
+        except Exception as e:
+            print(f"[ERROR] No se pudo establecer conexión con la cámara: {e}")
+            return False
 
     def get_frame(self):
         ret, frame = self.cap.read()

@@ -15,30 +15,31 @@ def main():
 
     # Prueba de conexión al host
     if successful_ping(HOST_URL):
-        print('Ping a cámara exitoso')
+        print('[INFO] Ping a cámara exitoso')
     else:
-        print('No se pudo hacer ping a cámara')
+        print('[ERROR] No se pudo hacer ping a cámara')
         return
 
     # Objetos
     camera = CameraStream(RTSP_URL)
     detector = PersonDetector(MODEL_PATH, CONF_TH)
 
+    # Probar conexión antes del bucle
+    if not camera.is_connected():
+        return
+
+    # Probar disponibilidad de predictor
+    if not detector.is_ready():
+        return
+
     # Variables generales
     recorder = None
     last_seen = 0
     recording = False
 
-    # Probar conexión antes del bucle
-    if camera.is_connected():
-        print('Cámara conectada')
-    else:
-        print('No se pudo establecer conexión con la cámara')
-        return
-
     # Bucle central
     try:
-        print('Bucle iniciado')
+        print('[INFO] Bucle iniciado')
         while True:
 
             # Capturar cuadro del stream de la cámara
