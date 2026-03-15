@@ -92,6 +92,7 @@ if __name__ == '__main__':
     try:
         p = psutil.Process(os.getpid())
         p.cpu_affinity([0])
+        print("[INFO] Afinidad de CPU fijada a un solo núcleo")
     except Exception as e:
         print(f"[WARN] No se pudo fijar afinidad de CPU: {e}")
 
