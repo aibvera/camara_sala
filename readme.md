@@ -3,6 +3,7 @@
 Básicamente eso. El video lo traté de guardar con audio pero creo que el stream no devuelve audio.
 
 ## Antes de levantar
+- Docker debe estar instalado en la máquina.
 - El .env debe estar creado y lleno en el directorio raiz.
 
 ## Levantar la aplicación
