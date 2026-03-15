@@ -36,6 +36,7 @@ class PersonDetector:
                 device="cpu",
                 classes=[0]
             )
+            print(f"[INFO] Predicción de prueba exitosa")
 
             return True
 

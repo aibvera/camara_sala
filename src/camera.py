@@ -7,6 +7,7 @@ class CameraStream:
     def is_connected(self):
         try:
             if self.cap.isOpened():
+                print(f"[INFO] Conexión a cámara exitosa")
                 return True
             else:
                 print(f"[ERROR] No se pudo establecer conexión con la cámara")

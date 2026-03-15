@@ -2,7 +2,7 @@ import psutil
 import os
 import time
 from datetime import datetime, timedelta, timezone   # ← agregado
-from src.config import HOST_URL, RTSP_URL, MODEL_PATH, OUTPUT_PATH, GRACE_PERIOD, CONF_TH
+from src.config import HOST_URL, RTSP_URL, MODEL_PATH, OUTPUT_PATH, GRACE_PERIOD, CONF_TH, SINGLE_CORE
 from src.camera import CameraStream
 from src.detector import PersonDetector
 from src.recorder import StreamRecorder
@@ -89,13 +89,14 @@ def main():
 
 if __name__ == '__main__':
     
-    # Forzar uso del núcleo 0 en Windows y Linux
-    try:
-        p = psutil.Process(os.getpid())
-        p.cpu_affinity([0])
-        print("[INFO] Afinidad de CPU fijada a un solo núcleo")
-    except Exception as e:
-        print(f"[WARN] No se pudo fijar afinidad de CPU: {e}")
+    # Forzar uso del núcleo 0 en Windows y Linux (opcional)
+    if SINGLE_CORE:
+        try:
+            p = psutil.Process(os.getpid())
+            p.cpu_affinity([0])
+            print("[INFO] Afinidad de CPU fijada a un solo núcleo")
+        except Exception as e:
+            print(f"[WARN] No se pudo fijar afinidad de CPU: {e}")
 
     # Programa
     main()
