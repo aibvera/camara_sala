@@ -7,6 +7,7 @@ from src.camera import CameraStream
 from src.detector import PersonDetector
 from src.recorder import StreamRecorder
 from src.ping import successful_ping
+from src.utils import frame_changed
 
 # Configuración de zona horaria de Lima (UTC-5)
 LIMA_TZ = timezone(timedelta(hours=-5))
@@ -36,6 +37,7 @@ def main():
     recorder = None
     last_seen = 0
     recording = False
+    prev_frame = None
 
     # Bucle central
     try:
@@ -45,7 +47,14 @@ def main():
             # Capturar cuadro del stream de la cámara
             frame = camera.get_frame()
             if frame is None:
+                print('[ERROR] No se pudo capturar un cuadro del stream')
                 break
+
+            # Evaluar si ha habido movimiento en la transmisión
+            changed, _ = frame_changed(prev_frame, frame, threshold_percent=5)
+            prev_frame = frame
+            if not changed:
+                continue
 
             # Detectar si hay una persona
             detected = detector.detect(frame)
